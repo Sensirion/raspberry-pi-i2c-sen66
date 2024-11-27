@@ -3,7 +3,7 @@
  *
  * Generator:     sensirion-driver-generator 1.0.1
  * Product:       sen66
- * Model-Version: 1.2.0
+ * Model-Version: 1.3.0
  */
 /*
  * Copyright (c) 2024, Sensirion AG
@@ -84,9 +84,9 @@ int main(void) {
     float temperature = 0.0;
     float voc_index = 0.0;
     float nox_index = 0.0;
-    float co2 = 0.0;
+    uint16_t co2 = 0;
     uint16_t repetition = 0;
-    for (repetition = 0; repetition < 50; repetition++) {
+    for (repetition = 0; repetition < 100; repetition++) {
         sensirion_hal_sleep_us(1000000);
         error = sen66_read_measured_values(
             &mass_concentration_pm1p0, &mass_concentration_pm2p5,
@@ -104,7 +104,7 @@ int main(void) {
         printf("temperature: %.2f ", temperature);
         printf("voc_index: %.2f ", voc_index);
         printf("nox_index: %.2f ", nox_index);
-        printf("co2: %.2f\n", co2);
+        printf("co2: %u\n", co2);
     }
 
     error = sen66_stop_measurement();

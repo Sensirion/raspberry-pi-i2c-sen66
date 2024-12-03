@@ -3,7 +3,7 @@
  *
  * Generator:     sensirion-driver-generator 1.0.1
  * Product:       sen66
- * Model-Version: 1.3.0
+ * Model-Version: 1.3.1
  */
 /*
  * Copyright (c) 2024, Sensirion AG
@@ -104,21 +104,11 @@ typedef union {
 void sen66_init(uint8_t i2c_address);
 
 /**
- * @brief sen66_signal_mass_concentration_pm0p5
- *
- * @param[in] mass_concentration_pm0p5_raw
- *
- * @return Mass concentration for particles smaller than 0.5 μm
- */
-float sen66_signal_mass_concentration_pm0p5(
-    uint16_t mass_concentration_pm0p5_raw);
-
-/**
  * @brief sen66_signal_mass_concentration_pm1p0
  *
  * @param[in] mass_concentration_pm1p0_raw
  *
- * @return Mass concentration for particles smaller than 1.0 μm
+ * @return Mass concentration in μg/m³ for particles smaller than 1.0 μm
  */
 float sen66_signal_mass_concentration_pm1p0(
     uint16_t mass_concentration_pm1p0_raw);
@@ -128,7 +118,7 @@ float sen66_signal_mass_concentration_pm1p0(
  *
  * @param[in] mass_concentration_pm2p5_raw
  *
- * @return Mass concentration for particles smaller than 2.5 μm
+ * @return Mass concentration in μg/m³ for particles smaller than 2.5 μm
  */
 float sen66_signal_mass_concentration_pm2p5(
     uint16_t mass_concentration_pm2p5_raw);
@@ -138,7 +128,7 @@ float sen66_signal_mass_concentration_pm2p5(
  *
  * @param[in] mass_concentration_pm4p0_raw
  *
- * @return Mass concentration for particles smaller than 4.0 μm
+ * @return Mass concentration in μg/m³ for particles smaller than 4.0 μm
  */
 float sen66_signal_mass_concentration_pm4p0(
     uint16_t mass_concentration_pm4p0_raw);
@@ -148,10 +138,65 @@ float sen66_signal_mass_concentration_pm4p0(
  *
  * @param[in] mass_concentration_pm10p0_raw
  *
- * @return Mass concentration for particles smaller than 10.0 μm
+ * @return Mass concentration in μg/m³ for particles smaller than 10.0 μm
  */
 float sen66_signal_mass_concentration_pm10p0(
     uint16_t mass_concentration_pm10p0_raw);
+
+/**
+ * @brief sen66_signal_number_concentration_pm0p5
+ *
+ * @param[in] number_concentration_pm0p5_raw
+ *
+ * @return Number concentration in particles/cm³ for particles smaller than 0.5
+ * μm
+ */
+float sen66_signal_number_concentration_pm0p5(
+    uint16_t number_concentration_pm0p5_raw);
+
+/**
+ * @brief sen66_signal_number_concentration_pm1p0
+ *
+ * @param[in] number_concentration_pm1p0_raw
+ *
+ * @return Number concentration in particles/cm³ for particles smaller than 1.0
+ * μm
+ */
+float sen66_signal_number_concentration_pm1p0(
+    uint16_t number_concentration_pm1p0_raw);
+
+/**
+ * @brief sen66_signal_number_concentration_pm2p5
+ *
+ * @param[in] number_concentration_pm2p5_raw
+ *
+ * @return Number concentration in particles/cm³ for particles smaller than 2.5
+ * μm
+ */
+float sen66_signal_number_concentration_pm2p5(
+    uint16_t number_concentration_pm2p5_raw);
+
+/**
+ * @brief sen66_signal_number_concentration_pm4p0
+ *
+ * @param[in] number_concentration_pm4p0_raw
+ *
+ * @return Number concentration in particles/cm³ for particles smaller than 4.0
+ * μm
+ */
+float sen66_signal_number_concentration_pm4p0(
+    uint16_t number_concentration_pm4p0_raw);
+
+/**
+ * @brief sen66_signal_number_concentration_pm10p0
+ *
+ * @param[in] number_concentration_pm10p0_raw
+ *
+ * @return Number concentration in particles/cm³ for particles smaller than 10.0
+ * μm
+ */
+float sen66_signal_number_concentration_pm10p0(
+    uint16_t number_concentration_pm10p0_raw);
 
 /**
  * @brief sen66_signal_temperature
@@ -202,14 +247,14 @@ uint16_t sen66_signal_co2(uint16_t co2_raw);
 /**
  * @brief Read measured values and apply scaling as defined in datasheet.
  *
- * @param[out] mass_concentration_pm1p0 Mass concentration for particles smaller
- * than 1.0 μm.
- * @param[out] mass_concentration_pm2p5 Mass concentration for particles smaller
- * than 2.5 μm.
- * @param[out] mass_concentration_pm4p0 Mass concentration for particles smaller
- * than 4.0 μm.
- * @param[out] mass_concentration_pm10p0 Mass concentration for particles
- * smaller than 10.0 μm.
+ * @param[out] mass_concentration_pm1p0 Mass concentration in μg/m³ for
+ * particles smaller than 1.0 μm.
+ * @param[out] mass_concentration_pm2p5 Mass concentration in μg/m³ for
+ * particles smaller than 2.5 μm.
+ * @param[out] mass_concentration_pm4p0 Mass concentration in μg/m³ for
+ * particles smaller than 4.0 μm.
+ * @param[out] mass_concentration_pm10p0 Mass concentration in μg/m³ for
+ * particles smaller than 10.0 μm.
  * @param[out] humidity Measured humidity in %RH.
  * @param[out] temperature Measured temperature in degrees celsius.
  * @param[out] voc_index Measured VOC Index between 0 and 500.
@@ -230,23 +275,23 @@ int16_t sen66_read_measured_values(float* mass_concentration_pm1p0,
  * @brief Read measured number concentration values and apply scaling as defined
  * in datasheet.
  *
- * @param[out] mass_concentration_pm0p5 Mass concentration for particles smaller
- * than 1.0 μm.
- * @param[out] mass_concentration_pm1p0 Mass concentration for particles smaller
- * than 1.0 μm.
- * @param[out] mass_concentration_pm2p5 Mass concentration for particles smaller
- * than 2.5 μm.
- * @param[out] mass_concentration_pm4p0 Mass concentration for particles smaller
- * than 4.0 μm.
- * @param[out] mass_concentration_pm10p0 Mass concentration for particles
- * smaller than 10.0 μm.
+ * @param[out] number_concentration_pm0p5 Number concentration in particles/cm³
+ * for particles smaller than 0.5 μm.
+ * @param[out] number_concentration_pm1p0 Number concentration in particles/cm³
+ * for particles smaller than 1.0 μm.
+ * @param[out] number_concentration_pm2p5 Number concentration in particles/cm³
+ * for particles smaller than 2.5 μm.
+ * @param[out] number_concentration_pm4p0 Number concentration in particles/cm³
+ * for particles smaller than 4.0 μm.
+ * @param[out] number_concentration_pm10p0 Number concentration in particles/cm³
+ * for particles smaller than 10.0 μm.
  *
  * @return error_code 0 on success, an error code otherwise.
  */
 int16_t sen66_read_number_concentration_values(
-    float* mass_concentration_pm0p5, float* mass_concentration_pm1p0,
-    float* mass_concentration_pm2p5, float* mass_concentration_pm4p0,
-    float* mass_concentration_pm10p0);
+    float* number_concentration_pm0p5, float* number_concentration_pm1p0,
+    float* number_concentration_pm2p5, float* number_concentration_pm4p0,
+    float* number_concentration_pm10p0);
 
 /**
  * @brief Start a continuous measurement (interval 1s)

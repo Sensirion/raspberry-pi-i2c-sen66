@@ -14,7 +14,7 @@ The default I²C address of [SEN66](https://www.sensirion.com/products/catalog/S
 
 ## Connect the sensor
 
-Your sensor has 6 different connectors: VDD, GND, SDA, SCL, GND, VDD.
+Your sensor has 4 different connectors: VDD, GND, SDA, SCL.
 Use the following pins to connect your SEN66:
 
 | *SEN66* | *Cable Color*  |   *Raspberry Pi*   |
@@ -23,8 +23,6 @@ Use the following pins to connect your SEN66:
 | GND | black | Pin 6
 | SDA | green | Pin 3
 | SCL | yellow | Pin 5
-| GND |  | Pin 6
-| VDD |  | Pin 1
 
 
 <img src="images/raspi-i2c-pinout-3.3V.png" width="400px">
@@ -40,8 +38,8 @@ Use the following pins to connect your SEN66:
 | 2 | black | GND | Ground |
 | 3 | green | SDA | I2C: Serial data input / output | TTL 5V compatible
 | 4 | yellow | SCL | I2C: Serial clock input | TTL 5V compatible
-| 5 |  | GND | Ground | Do not connect (Pins 2 and 5 are connected internally)
-| 6 |  | VDD | Supply Voltage | Do not connect (Pins 1 and 6 are connected internally)
+| 5 |  | NC | Do not connect | Ground (Pins 2 and 5 are connected internally)
+| 6 |  | NC | Do not connect | Supply Voltage (Pins 1 and 6 are connected internally)
 
 
 

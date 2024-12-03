@@ -3,7 +3,7 @@
  *
  * Generator:     sensirion-driver-generator 1.0.1
  * Product:       sen66
- * Model-Version: 1.3.0
+ * Model-Version: 1.3.1
  */
 /*
  * Copyright (c) 2024, Sensirion AG
@@ -51,13 +51,6 @@ void sen66_init(uint8_t i2c_address) {
     _i2c_address = i2c_address;
 }
 
-float sen66_signal_mass_concentration_pm0p5(
-    uint16_t mass_concentration_pm0p5_raw) {
-    float mass_concentration_pm0p5 = 0.0;
-    mass_concentration_pm0p5 = mass_concentration_pm0p5_raw / 10.0;
-    return mass_concentration_pm0p5;
-}
-
 float sen66_signal_mass_concentration_pm1p0(
     uint16_t mass_concentration_pm1p0_raw) {
     float mass_concentration_pm1p0 = 0.0;
@@ -84,6 +77,41 @@ float sen66_signal_mass_concentration_pm10p0(
     float mass_concentration_pm10p0 = 0.0;
     mass_concentration_pm10p0 = mass_concentration_pm10p0_raw / 10.0;
     return mass_concentration_pm10p0;
+}
+
+float sen66_signal_number_concentration_pm0p5(
+    uint16_t number_concentration_pm0p5_raw) {
+    float number_concentration_pm0p5 = 0.0;
+    number_concentration_pm0p5 = number_concentration_pm0p5_raw / 10.0;
+    return number_concentration_pm0p5;
+}
+
+float sen66_signal_number_concentration_pm1p0(
+    uint16_t number_concentration_pm1p0_raw) {
+    float number_concentration_pm1p0 = 0.0;
+    number_concentration_pm1p0 = number_concentration_pm1p0_raw / 10.0;
+    return number_concentration_pm1p0;
+}
+
+float sen66_signal_number_concentration_pm2p5(
+    uint16_t number_concentration_pm2p5_raw) {
+    float number_concentration_pm2p5 = 0.0;
+    number_concentration_pm2p5 = number_concentration_pm2p5_raw / 10.0;
+    return number_concentration_pm2p5;
+}
+
+float sen66_signal_number_concentration_pm4p0(
+    uint16_t number_concentration_pm4p0_raw) {
+    float number_concentration_pm4p0 = 0.0;
+    number_concentration_pm4p0 = number_concentration_pm4p0_raw / 10.0;
+    return number_concentration_pm4p0;
+}
+
+float sen66_signal_number_concentration_pm10p0(
+    uint16_t number_concentration_pm10p0_raw) {
+    float number_concentration_pm10p0 = 0.0;
+    number_concentration_pm10p0 = number_concentration_pm10p0_raw / 10.0;
+    return number_concentration_pm10p0;
 }
 
 float sen66_signal_temperature(int16_t temperature_raw) {
@@ -158,32 +186,32 @@ int16_t sen66_read_measured_values(float* mass_concentration_pm1p0,
 }
 
 int16_t sen66_read_number_concentration_values(
-    float* mass_concentration_pm0p5, float* mass_concentration_pm1p0,
-    float* mass_concentration_pm2p5, float* mass_concentration_pm4p0,
-    float* mass_concentration_pm10p0) {
-    uint16_t mass_concentration_pm0p5_raw = 0;
-    uint16_t mass_concentration_pm1p0_raw = 0;
-    uint16_t mass_concentration_pm2p5_raw = 0;
-    uint16_t mass_concentration_pm4p0_raw = 0;
-    uint16_t mass_concentration_pm10p0_raw = 0;
+    float* number_concentration_pm0p5, float* number_concentration_pm1p0,
+    float* number_concentration_pm2p5, float* number_concentration_pm4p0,
+    float* number_concentration_pm10p0) {
+    uint16_t number_concentration_pm0p5_raw = 0;
+    uint16_t number_concentration_pm1p0_raw = 0;
+    uint16_t number_concentration_pm2p5_raw = 0;
+    uint16_t number_concentration_pm4p0_raw = 0;
+    uint16_t number_concentration_pm10p0_raw = 0;
     int16_t local_error = 0;
     local_error = sen66_read_number_concentration_values_as_integers(
-        &mass_concentration_pm0p5_raw, &mass_concentration_pm1p0_raw,
-        &mass_concentration_pm2p5_raw, &mass_concentration_pm4p0_raw,
-        &mass_concentration_pm10p0_raw);
+        &number_concentration_pm0p5_raw, &number_concentration_pm1p0_raw,
+        &number_concentration_pm2p5_raw, &number_concentration_pm4p0_raw,
+        &number_concentration_pm10p0_raw);
     if (local_error != NO_ERROR) {
         return local_error;
     }
-    *mass_concentration_pm0p5 =
-        sen66_signal_mass_concentration_pm0p5(mass_concentration_pm0p5_raw);
-    *mass_concentration_pm1p0 =
-        sen66_signal_mass_concentration_pm1p0(mass_concentration_pm1p0_raw);
-    *mass_concentration_pm2p5 =
-        sen66_signal_mass_concentration_pm2p5(mass_concentration_pm2p5_raw);
-    *mass_concentration_pm4p0 =
-        sen66_signal_mass_concentration_pm4p0(mass_concentration_pm4p0_raw);
-    *mass_concentration_pm10p0 =
-        sen66_signal_mass_concentration_pm10p0(mass_concentration_pm10p0_raw);
+    *number_concentration_pm0p5 =
+        sen66_signal_number_concentration_pm0p5(number_concentration_pm0p5_raw);
+    *number_concentration_pm1p0 =
+        sen66_signal_number_concentration_pm1p0(number_concentration_pm1p0_raw);
+    *number_concentration_pm2p5 =
+        sen66_signal_number_concentration_pm2p5(number_concentration_pm2p5_raw);
+    *number_concentration_pm4p0 =
+        sen66_signal_number_concentration_pm4p0(number_concentration_pm4p0_raw);
+    *number_concentration_pm10p0 = sen66_signal_number_concentration_pm10p0(
+        number_concentration_pm10p0_raw);
     return local_error;
 }
 

@@ -39,7 +39,7 @@ Use the following pins to connect your SEN66:
 | 3 | green | SDA | I2C: Serial data input / output | TTL 5V compatible
 | 4 | yellow | SCL | I2C: Serial clock input | TTL 5V compatible
 | 5 |  | NC | Do not connect | Ground (Pins 2 and 5 are connected internally)
-| 6 |  | NC | Do not connect | Supply Voltage (Pins 1 and 6 are connected internally)
+| 6 |  | NC | Do not connect | Supply voltage (Pins 1 and 6 are connected internally)
 
 
 
